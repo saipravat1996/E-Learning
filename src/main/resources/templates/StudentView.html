@@ -1,0 +1,97 @@
+<!doctype html>
+<html  xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>E-Learning</title>
+
+  
+
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <style>
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+	 
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  
+  
+  <body class="d-flex flex-column h-70">
+   <div th:insert="/MenuNavabar"></div>
+  
+   <div class="container" style="color:dark"> 
+     
+     <span><h1> All Student</h1>
+    </div> 
+   <table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">FName</th>
+      <th scope="col">LName</th>
+   <th scope="col">Address</th>
+   <th scope="col">userName</th>
+   <th scope="col">Contact</th>
+   <th scope="col">View Result</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="ob:${studentresult}">
+      
+      <td th:text="${ob.fName}"></td>
+      <td th:text="${ob.lName}"></td>
+      <td th:text="${ob.address}"></td>
+      <td th:text="${ob.userName}"></td>
+      <td th:text="${ob.contact}"></td>
+      <td >
+                  <a class="btn btn-primary" th:href="@{/AdminViewResult?userName={uname}(uname=${ob.userName})}">Result</a>
+      
+      </td>
+
+      
+    </tr>
+   
+  </tbody>
+ 
+</table>
+<div class="">
+ <ul class="pagination">
+  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+</ul>
+</div>
+</body>
+</html>

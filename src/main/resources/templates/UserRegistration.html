@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Learning </title>
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+ <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style type="text/css">
+    <style type="text/css">
+.err{
+color: red;
+}
+
+</style>
+
+    	</style>
+</head>
+<body>
+	<div th:insert="/MenuNavabar"></div>
+  <div class="container" style="color:dark"> 
+     <h1>Add New User</h1> 
+    </div> 
+<div class="container"> 
+    <h4></h4> 
+    <form action="userSave" method="POST" th:object="${user}" onsubmit=" return passwordcheck()" class="form-horizontal" enctype = "multipart/form-data"> 
+        <div class="form-group has-success"> 
+            <label class="control-label col-sm-2" for="id1">Account Name</label> 
+            <div class="col-sm-6"> 
+                <input class="form-control" type="text" id="id1" required="required" th:field="*{name}" placeholder="Account Name"> 
+            </div> 
+        </div> 
+		  <div class="form-group has-success"> 
+            <label class="control-label col-sm-2" for="id1">User Name</label> 
+            <div class="col-sm-6"> 
+                <input class="form-control" type="text" id="userName" required="required" th:field="*{userName}" placeholder="Enter  user name"> 
+           		<span id="userNameErr"></span>
+            </div> 
+        </div> 
+		   <div class="form-group has-success"> 
+            <label class="control-label col-sm-2" for="id1">Password</label> 
+            <div class="col-sm-6"> 
+                <input class="form-control" type="password" required="required" th:field="*{password}" id="password"  placeholder="Enter password"> 
+            </div> 
+        </div> 
+        <div class="container" > 
+        <input type="submit" class="btn btn-success" value ="Save" />
+            <!-- <button type="button" class="btn btn-success">Save</button> </input> -->
+        
+        </div> 
+    </form> 
+</div> 
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#userName").change(function(){
+	var usern=$("#userName").val();
+	debugger;
+	$.ajax({
+		url:'checUserName',
+		data:{'userName':$("#userName").val()},
+		success:function(restext){
+			debugger;
+			if(restext !=""){
+				$("#userNameErr").show();
+		          $("#userNameErr").text(restext);
+		          $("#userNameErr").css("color","red");
+		          $("#userName").val('');
+			}
+			
+			else{
+				 $("#userNameErr").hide();
+			}
+		}
+	});
+	});
+});
+</script>
+	
+	
+
+</body>
+</html>

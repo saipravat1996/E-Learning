@@ -1,0 +1,97 @@
+<!doctype html>
+<html  xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>E-Learning</title>
+
+  
+
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <style>
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+	 
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  
+  
+  <body class="d-flex flex-column h-70">
+   <div th:insert="/MenuNavabar"></div>
+   <div class="container" style="color:dark"> 
+     
+     <span><h1> List of Question</h1> <a class=" btn btn-primary" href="/questionregistration">New</a></span>
+    </div> 
+   <table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Chapter</th>
+      <th scope="col">Question</th>
+   <th scope="col">Option1</th>
+   <th scope="col">Option2</th>
+   <th scope="col">Option3</th>
+   <th scope="col">Option4</th>
+   <th scope="col">Answer</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="ob:${listQuestion}">
+      
+      <td th:text="${ob.chapter}"></td>
+      <td th:text="${ob.question}"></td>
+      <td th:text="${ob.option1}"></td>
+      <td th:text="${ob.option2}"></td>
+      <td th:text="${ob.option3}"></td>
+      <td th:text="${ob.option4}"></td>
+      <td th:text="${ob.answer}"></td>
+      <td>
+          <a class="btn btn-warning" th:href="@{/questionRemoveById?questionID={uname}(uname=${ob.questionId})}">DELETE</a>
+            <a class="btn btn-primary" th:href="@{/questionById?questionID={uname}(uname=${ob.questionId})}">EDIT</a>
+      </td>
+    </tr>
+   
+  </tbody>
+ 
+</table>
+<div class="">
+ <ul class="pagination">
+  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+</ul>
+</div>
+</body>
+</html>
